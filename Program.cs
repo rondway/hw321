@@ -1,29 +1,64 @@
-﻿using System;
+﻿//1 задача//
+// using System;
+
+// class Program
+// {
+//     static void PrintNumbersInRange(int m, int n)
+//     {
+//         if (m <= n)
+//         {
+//             Console.Write(m + " ");
+//             PrintNumbersInRange(m + 1, n);
+//         }
+//     }
+
+//     static void Main()
+//     {
+//         Console.Write("Введите значение M: ");
+//         int M = int.Parse(Console.ReadLine());
+
+//         Console.Write("Введите значение N: ");
+//         int N = int.Parse(Console.ReadLine());
+
+//         PrintNumbersInRange(M, N);
+
+//         Console.ReadKey();
+//     }
+// }
+
+//2 задача//
+using System;
 
 class Program
 {
-    static void PrintNumbersInRange(int m, int n)
+    static int Ackermann(int m, int n)
     {
-        if (m <= n)
+        if (m == 0)
         {
-            Console.Write(m + " ");
-            PrintNumbersInRange(m + 1, n);
+            return n + 1;
+        }
+        else if (n == 0)
+        {
+            return Ackermann(m - 1, 1);
+        }
+        else
+        {
+            return Ackermann(m - 1, Ackermann(m, n - 1));
         }
     }
 
     static void Main()
     {
-        // Введите значения M и N
-        Console.Write("Введите значение M: ");
-        int M = int.Parse(Console.ReadLine());
+        Console.Write("Введите значение m: ");
+        int m = int.Parse(Console.ReadLine());
 
-        Console.Write("Введите значение N: ");
-        int N = int.Parse(Console.ReadLine());
+        Console.Write("Введите значение n: ");
+        int n = int.Parse(Console.ReadLine());
 
-        // Вызываем функцию для вывода чисел в заданном промежутке
-        PrintNumbersInRange(M, N);
 
-        // Ждем нажатия клавиши перед закрытием консоли (для удобства просмотра вывода)
+        int result = Ackermann(m, n);
+        Console.WriteLine($"Результат функции Аккермана для m={m} и n={n}: {result}");
+
         Console.ReadKey();
     }
 }
